@@ -930,7 +930,7 @@ bool CvCapture_FFMPEG::open( const char* _filename )
 //#endif
 
 av_opt_set(enc->priv_data, "preset", "ultrafast", 0);
-av_opt_set(enc->priv_data, "tune", "zerolatency", 0);
+av_opt_set(enc->priv_data, "tune", "zerolatency,fastdecode", 0);
 
 #if LIBAVFORMAT_BUILD < CALC_FFMPEG_VERSION(53, 2, 0)
 #define AVMEDIA_TYPE_VIDEO CODEC_TYPE_VIDEO
