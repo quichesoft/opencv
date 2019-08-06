@@ -926,6 +926,7 @@ bool CvCapture_FFMPEG::open( const char* _filename )
 //#ifdef FF_API_THREAD_INIT
 //        avcodec_thread_init(enc, get_number_of_cpus());
 //#else
+        enc->flags |= CODEC_FLAG_LOW_DELAY;
         enc->thread_count = 1;
 //#endif
 
