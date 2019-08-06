@@ -927,7 +927,7 @@ bool CvCapture_FFMPEG::open( const char* _filename )
 //        avcodec_thread_init(enc, get_number_of_cpus());
 //#else
         enc->flags |= CODEC_FLAG_LOW_DELAY;
-        enc->thread_count = 1;
+        enc->thread_count = get_number_of_cpus();
 //#endif
 
 #if LIBAVFORMAT_BUILD < CALC_FFMPEG_VERSION(53, 2, 0)
