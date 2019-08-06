@@ -870,6 +870,7 @@ bool CvCapture_FFMPEG::open( const char* _filename )
     get_monotonic_time(&interrupt_metadata.value);
 
     ic = avformat_alloc_context();
+    ic->flags = AVFMT_FLAG_NOBUFFER | AVFMT_FLAG_FLUSH_PACKETS;
     ic->interrupt_callback.callback = _opencv_ffmpeg_interrupt_callback;
     ic->interrupt_callback.opaque = &interrupt_metadata;
 #endif
@@ -925,7 +926,7 @@ bool CvCapture_FFMPEG::open( const char* _filename )
 //#ifdef FF_API_THREAD_INIT
 //        avcodec_thread_init(enc, get_number_of_cpus());
 //#else
-        enc->thread_count = get_number_of_cpus();
+        enc->thread_count = 1;
 //#endif
 
 #if LIBAVFORMAT_BUILD < CALC_FFMPEG_VERSION(53, 2, 0)
